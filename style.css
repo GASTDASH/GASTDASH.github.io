@@ -1,13 +1,34 @@
+body {
+	background: #000000;
+	background: linear-gradient(#333333, #EEEEEE);
+	height: 920px;
+}
 p {
 	font-size: 20pt;
 }
 #textBig {
+	font-family: 'Orbitron', sans-serif;
 	font-size: 30pt;
 	font-weight: bold;
 	margin: 0;
 	padding: 0;
+	text-shadow: white 0 0 20px;
 }
 #text1 {
+	font-family: 'Poppins', sans-serif;
 	margin: 0;
+	margin-top: 20px;
 	padding-left: 30px;
+	text-shadow: white 0 0 6px;
+}
+#head {
+	margin: 0;
+	font-size: 52pt;
+	font-family: 'MuseoModerno', cursive;
+	color: #FFFFFF;
+	background: #000000;
+  	background: linear-gradient(#111111, #888888);
+  	border-radius: 10px;
+  	height: 120px;
+  	text-shadow: black 0 5px 20px;
 }
