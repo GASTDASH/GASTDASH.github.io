@@ -36,6 +36,19 @@ p {
   	height: 90px;
   	text-shadow: black 0 5px 20px;
 }
+#subhead {
+	margin: 0;
+	font-size: 24pt;
+	color: #FFFFFF;
+  	height: 90px;
+  	text-shadow: black 0 3px 10px;
+}
+#translate {
+	background: #000000;
+  	background: linear-gradient(#111111, #CCCCCC);
+  	border-radius: 10px;
+  	box-shadow: 0px 0px 20px 7px #000;
+}
 #contact-us {
     position: fixed; /* Фиксированное положение */
     left: 0; bottom: -30px; /* Левый нижний угол */
