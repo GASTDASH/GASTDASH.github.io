@@ -1,41 +1,145 @@
 body {
 	background: #CCCCCC;
+	margin: 0px;
+    padding: 0px;
 }
+
+* {
+	box-sizing: border-box;
+	
+}
+
 p {
 	font-size: 20pt;
 }
+
+/*header {
+	background-color: #aaa;
+	height: 110px;
+	padding: 10px 0;
+}
+
+.logo {
+	width: 100px;
+}
+
+.logo img {
+	width: 100px;
+}
+
+nav {
+	width: 960px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.lang-menu {
+	margin-top: 25px;
+}
+
+.lang-menu ul {
+	margin: 0;
+	padding: 0;
+	background-color: #FFFFFF;
+	border: 1px solid #aaa;
+	box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+	border-radius: 5px;
+}
+
+.lang-menu ul li {
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+}
+
+.lang-menu ul li a {
+	font-family: 'Orbitron', sans-serif;
+	width: 140px;
+	display: block;
+	padding: 5px 10px;
+}
+
+.lang-menu ul li a:hover {
+	background-color: #f3f3f3;
+}
+
+.lang-menu ul li a::before {
+	content: '';
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	margin-right: 8px;
+	vertical-align: middle;
+	background-size: 32px;
+}
+
+.selected-lang {
+	font-family: 'Orbitron', sans-serif;
+	font-size: 16px;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	line-height: 2;
+	width: 110px;
+}
+
+.selected-lang:before {
+	content: '';
+	display: block;
+	width: 32px;
+	height: 32px;
+	background-image: url("https://findicons.com/icon/download/direct/32093/united_states_flag/128/png");
+	background-size: 32px;
+}
+
+.ru:before {
+	background-image: url("https://findicons.com/icon/download/direct/32264/russian_federation/48/png");
+}
+*/
+
+
+
+
+
+
+
+
+
+
 #textBig {
 	font-family: 'Orbitron', sans-serif;
 	color: black;
-	font-size: 30pt;
+	font-size: 45pt;
 	font-weight: bold;
 	margin: 0;
 	padding: 0;
 	text-shadow: black 0 0 4px;
 	text-decoration: none
 }
+
 #text1 {
 	font-family: 'Poppins', sans-serif;
 	color: black;
-	font-size: 15pt;
+	font-size: 16pt;
 	margin: 0;
 	margin-top: 20px;
 	padding-left: 30px;
 	text-shadow: black 0 0 2px;
 	text-decoration: none
 }
+
 #head {
 	margin: 0;
 	font-size: 52pt;
-	/* font-family: 'MuseoModerno', cursive; */
 	font-family: 'Righteous', sans-serif;
 	color: #FFFFFF;
 	background: #000000;
   	background: linear-gradient(#111111, #CCCCCC);
-  	border-radius: 10px;
   	height: 90px;
   	text-shadow: black 0 5px 20px;
 }
+
 #subhead {
 	margin: 0;
 	font-size: 24pt;
@@ -43,12 +147,14 @@ p {
   	height: 90px;
   	text-shadow: black 0 3px 10px;
 }
+
 #translate {
 	background: #000000;
   	background: linear-gradient(#111111, #CCCCCC);
   	border-radius: 10px;
   	box-shadow: 0px 0px 20px 7px #000;
 }
+
 #contact-us {
     position: fixed; /* Фиксированное положение */
     left: 0; bottom: -30px; /* Левый нижний угол */
@@ -57,7 +163,8 @@ p {
     color: #fff; /* Цвет текста */
     width: 100%; /* Ширина слоя */
    }
-!#download-button {
+
+/* !#download-button {
 !	border-radius: 20px 20px 20px 20px; 
 !	box-shadow: black 0 0 20px 20px;
-!}
+!} */
