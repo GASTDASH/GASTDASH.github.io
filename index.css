@@ -64,7 +64,7 @@ nav {
 	background-color: #f3f3f3;
 }
 
-.lang-menu ul li a::before {
+.lang-menu ul li a:before {
 	content: '';
 	display: inline-block;
 	width: 32px;
@@ -110,7 +110,7 @@ nav {
 #textBig {
 	font-family: 'Orbitron', sans-serif;
 	color: black;
-	font-size: 45pt;
+	font-size: 30pt;
 	font-weight: bold;
 	margin: 0;
 	padding: 0;
@@ -121,7 +121,7 @@ nav {
 #text1 {
 	font-family: 'Poppins', sans-serif;
 	color: black;
-	font-size: 16pt;
+	font-size: 15pt;
 	margin: 0;
 	margin-top: 20px;
 	padding-left: 30px;
@@ -148,7 +148,11 @@ nav {
   	text-shadow: black 0 3px 10px;
 }
 
-#translate {
+.translate a {
+	text-decoration: none;
+}
+
+.translate a img {
 	background: #000000;
   	background: linear-gradient(#111111, #CCCCCC);
   	border-radius: 10px;
