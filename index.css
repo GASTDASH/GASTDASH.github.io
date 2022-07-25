@@ -6,7 +6,8 @@ body {
 
 * {
 	box-sizing: border-box;
-	
+	margin: 0;
+	padding: 0;
 }
 
 p {
@@ -129,6 +130,15 @@ nav {
 	text-decoration: none
 }
 
+
+
+
+
+
+
+
+
+
 #head {
 	margin: 0;
 	font-size: 52pt;
@@ -148,16 +158,132 @@ nav {
   	text-shadow: black 0 3px 10px;
 }
 
-.translate a {
+
+
+
+
+
+
+
+
+
+
+
+
+
+.row {
+	position: relative;
+	min-height: 100vh;
+}
+
+.translates {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 50px;
+	justify-content: center;
+	padding: 10px;
+}
+
+.translates a {
 	text-decoration: none;
 }
 
-.translate a img {
-	background: #000000;
-  	background: linear-gradient(#111111, #CCCCCC);
-  	border-radius: 10px;
+.translates a {
+	height: 220px;
+  	border: 10px solid #fff;
+	border-radius: 10px;
   	box-shadow: 0px 0px 20px 7px #000;
+	overflow: hidden;
+	cursor: pointer;
 }
+
+.translates a img {
+	object-fit: cover;
+	transition: .2s linear;
+}
+
+.translates a:hover img {
+	transform: scale(1.12);
+}
+
+.popup-image {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.9);
+	height: 100%;
+	width: 100%;
+	z-index: 100;
+	display: none;
+}
+
+.popup-image span {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 60px;
+	font-weight: bolder;
+	color: #FFFFFF;
+	cursor: pointer;
+	z-index: 100;
+}
+
+.popup-image span::before {
+	content: 'Made for vk.com/pony_mem';
+	font-size: 24pt;
+	font-family:Verdana, Geneva, Tahoma, sans-serif;
+	text-shadow: black 0 3px 10px;
+	
+	position: fixed;
+	left: 25px;
+	top: 20px;
+}
+
+.popup-image img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 5px solid #fff;
+	border-radius: 5px;
+	height: 650px;
+	object-fit: cover;
+}
+
+@media (max-width:768px) {
+	.popup-image img {
+		width: 95%;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #contact-us {
     position: fixed; /* Фиксированное положение */
