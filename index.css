@@ -229,11 +229,11 @@ nav {
 }
 
 .popup-image span::before {
-	content: 'Made for vk.com/pony_mem';
+	content: 'Made for vk.com/pony_mem \0aПереведено специально для "понячего андерграунда"';
 	font-size: 24pt;
 	font-family:Verdana, Geneva, Tahoma, sans-serif;
 	text-shadow: black 0 3px 10px;
-	
+	white-space: pre;
 	position: fixed;
 	left: 25px;
 	top: 20px;
