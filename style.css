@@ -87,10 +87,11 @@ body {
 }
 
 .old_version a {
+    position: fixed;
+    width: 100%;
     color: white;
     text-decoration: none;
     font-size: 18px;
-    position: absolute;
     bottom: 1%;
     left: 1%;
     transition: all 0.3s;
