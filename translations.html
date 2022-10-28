@@ -72,11 +72,14 @@
 			<a class="translate-ponymem">  <img src="translations\71.png" height="200" hspace="20" vspace="20" alt="Пора спать"> </a>
 			<a class="translate-ponymem">  <img src="translations\73.png" height="200" hspace="20" vspace="20" alt="Пора спать"> </a>
 			<a class="translate-ponymem">  <img src="translations\76.png" height="200" hspace="20" vspace="20" alt="Пора спать"> </a>
+			<a class="translate-ponymem">  <img src="translations\78.png" height="200" hspace="20" vspace="20" alt="Пора спать"> </a>
+			<a class="translate-ponymem">  <img src="translations\80.png" height="200" hspace="20" vspace="20" alt="Пора спать"> </a>
+			<a class="translate-ponymem">  <img src="translations\82.png" height="200" hspace="20" vspace="20" alt="Пора спать"> </a>
 		</div>
 		<div class="popup-image">
 			<span>&times;</span>
 			<a href="#" target="_blank" >
-				<img src="translations/76.png" alt="">
+				<img src="translations/1.png" alt="">
 			</a>
 		</div>
 	</div>
@@ -85,7 +88,7 @@
 			image.onclick = () => {
 				document.querySelector('.popup-image').style.display = 'block';
 				document.querySelector('.popup-image img').src = image.getAttribute('src');
-				document.querySelector('.popup-image').href = image.getAttribute('src');
+				document.querySelector('.popup-image a').href = image.getAttribute('src');
 			}
 		});
 
