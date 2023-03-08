@@ -79,7 +79,7 @@ body {
 }
 
 .hero {
-    height: calc(100vh - 80px);
+    /*height: calc(100vh - 80px);*/
     background-image: url("images/TEST3.png");
     background-position: center;
     background-size: cover;
@@ -100,4 +100,27 @@ body {
 .old_version a:hover {
     color: rgb(53, 180, 234);
     left: 2%;
+}
+
+.row1 {
+	position: relative;
+	min-height: 100vh;
+}
+
+.content1 {
+	display: flex;
+	flex-wrap: wrap;
+    /*justify-content: center;*/
+	gap: 50px;
+	padding: 10px;
+}
+
+.content1 a {
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.content1 a img {
+	object-fit: cover;
+	transition: .2s linear;
 }
