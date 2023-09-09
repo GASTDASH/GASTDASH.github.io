@@ -9,6 +9,15 @@ body {
     text-shadow: black 10px 10px 10px;
 }
 
+.logo {
+    margin: 0;
+	/* font-size: 32pt; */
+    font-size: 2.6vw;
+	font-family: 'Righteous', sans-serif;
+	color: #FFFFFF;
+  	text-shadow: black 0 5px 20px;
+}
+
 .menu_bar {
     background-color: #383838;
     height: 80px;
@@ -18,14 +27,6 @@ body {
     justify-content: space-between;
     padding: 0 5%;
     box-shadow: #000000 0 7px 20px;
-}
-
-.logo {
-    margin: 0;
-	font-size: 32pt;
-	font-family: 'Righteous', sans-serif;
-	color: #FFFFFF;
-  	text-shadow: black 0 5px 20px;
 }
 
 .menu_bar ul {
@@ -41,18 +42,13 @@ body {
 .menu_bar ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1vw;
 
     transition: all 0.3s;
 }
 
 .menu_bar ul li a:hover {
     color: rgb(53, 180, 234);
-}
-
-.dropdown_menu {
-    display: none;
-    border-radius: 6px;
 }
 
 .menu_bar ul li:hover .dropdown_menu {
@@ -71,6 +67,11 @@ body {
 .menu_bar ul li:hover .dropdown_menu ul li {
     width: 150px;
     padding: 10px;
+}
+
+.dropdown_menu {
+    display: none;
+    border-radius: 6px;
 }
 
 .fas {
@@ -110,7 +111,7 @@ body {
 .content1 {
 	display: flex;
 	flex-wrap: wrap;
-    /*justify-content: center;*/
+    /* justify-content: center; */ /* Оно работает, но лучше наверное без него*/ 
 	gap: 50px;
 	padding: 10px;
 }
