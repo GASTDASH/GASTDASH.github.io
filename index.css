@@ -148,6 +148,7 @@ nav {
   	background: linear-gradient(#111111, #CCCCCC);
   	height: 90px;
   	text-shadow: black 0 5px 20px;
+	user-select: none;
 }
 
 #subhead {
@@ -156,6 +157,7 @@ nav {
 	color: #FFFFFF;
   	height: 90px;
   	text-shadow: black 0 3px 10px;
+	user-select: none;
 }
 
 

@@ -7,6 +7,7 @@ body {
 
 p {
 	font-size: 20pt;
+	user-select: none;
 }
 
 #textBig {
@@ -47,6 +48,7 @@ p {
   	background: linear-gradient(#111111, #888888);
   	height: 120px;
   	text-shadow: black 0 5px 20px;
+	user-select: none;
 }
 
 #contact-us {

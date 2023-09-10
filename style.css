@@ -12,20 +12,21 @@ body {
 .logo {
     margin: 0;
 	/* font-size: 32pt; */
-    font-size: 2.6vw;
+    font-size: 2.8vw;
 	font-family: 'Righteous', sans-serif;
 	color: #FFFFFF;
   	text-shadow: black 0 5px 20px;
+    user-select: none;
 }
 
 .menu_bar {
     background-color: #383838;
-    height: 80px;
+    height: 5vw;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5%;
+    padding: 0 6%;
     box-shadow: #000000 0 7px 20px;
 }
 
@@ -35,14 +36,14 @@ body {
 }
 
 .menu_bar ul li {
-    padding: 10px 30px;
+    padding: 2vw;
     position: relative;
 }
 
 .menu_bar ul li a {
     color: white;
     text-decoration: none;
-    font-size: 1vw;
+    font-size: 1.2vw;
 
     transition: all 0.3s;
 }
@@ -72,6 +73,10 @@ body {
 .dropdown_menu {
     display: none;
     border-radius: 6px;
+}
+
+.dropdown_menu ul li a {
+    font-size: 20px;
 }
 
 .fas {
@@ -118,6 +123,14 @@ body {
 
 .content1 a {
 	overflow: hidden;
+    cursor: default;
+}
+
+.content1 a h1 {
+    user-select: none;
+}
+
+.content1 a iframe {
 	cursor: pointer;
 }
 
