@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gastdash_website_flutter/index_page.dart';
+import 'package:gastdash_website_flutter/routing/router.dart';
 
 void main() {
   runApp(const WebSiteApp());
@@ -10,9 +10,9 @@ class WebSiteApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       theme: ThemeData(fontFamily: 'Poppins', brightness: Brightness.dark),
-      home: IndexPage(),
     );
   }
 }
