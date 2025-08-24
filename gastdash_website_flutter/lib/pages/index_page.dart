@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gastdash_website_flutter/widgets/blurred_container.dart';
 import 'package:gastdash_website_flutter/widgets/release_card.dart';
+import 'package:gastdash_website_flutter/widgets/socials_dialog.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class IndexPage extends StatelessWidget {
   const IndexPage({super.key});
@@ -74,10 +76,13 @@ class IndexPage extends StatelessWidget {
                 actionsPadding: EdgeInsets.only(right: 32),
                 actions: [
                   TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      showSocialsDialog(context);
+                    },
                     label: Text('Socials'),
                     icon: Icon(Icons.person_search),
                   ),
+
                   TextButton.icon(
                     onPressed: () {},
                     label: Text('Music'),
@@ -91,7 +96,12 @@ class IndexPage extends StatelessWidget {
                     icon: Icon(Icons.translate),
                   ),
                   TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () async {
+                      final Uri uri = Uri.parse('https://vk.com/gastdasharts');
+                      if (!await launchUrl(uri)) {
+                        throw Exception('Could not launch $uri');
+                      }
+                    },
                     label: Text('Arts'),
                     icon: Icon(Icons.image),
                   ),
@@ -137,14 +147,32 @@ class IndexPage extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     BlurredContainer(
-                                      onTap: () {},
+                                      onTap: () async {
+                                        final Uri uri = Uri.parse(
+                                          'https://band.link/gastdash_DTR',
+                                        );
+                                        if (!await launchUrl(uri)) {
+                                          throw Exception(
+                                            'Could not launch $uri',
+                                          );
+                                        }
+                                      },
                                       child: Text(
                                         'Listen now',
                                         style: TextStyle(fontSize: 21),
                                       ),
                                     ),
                                     BlurredContainer(
-                                      onTap: () {},
+                                      onTap: () async {
+                                        final Uri uri = Uri.parse(
+                                          'https://youtube.com/playlist?list=PLAC6EhwV55yOqK_5qZ3OixXJVzT2tjJn9&si=f8IodeV3wmQH0803',
+                                        );
+                                        if (!await launchUrl(uri)) {
+                                          throw Exception(
+                                            'Could not launch $uri',
+                                          );
+                                        }
+                                      },
                                       child: Text(
                                         'Watch on YouTube',
                                         style: TextStyle(fontSize: 21),
@@ -430,4 +458,7 @@ class IndexPage extends StatelessWidget {
       ),
     );
   }
+
+  Future showSocialsDialog(BuildContext context) =>
+      showDialog(context: context, builder: (context) => SocialsDialog());
 }
