@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gastdash_website_flutter/widgets/blurred_container.dart';
+import 'package:gastdash_website_flutter/core/core.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 class TranslationsPage extends StatelessWidget {
   const TranslationsPage({super.key});
 
+  // TODO: Перенести в другой слой
   Future<List<String>> _getTranslations() async {
     final manifestContent = await rootBundle.loadString('AssetManifest.json');
     final Map<String, dynamic> manifestMap = json.decode(manifestContent);

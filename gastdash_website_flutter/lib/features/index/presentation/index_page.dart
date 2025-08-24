@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gastdash_website_flutter/widgets/blurred_container.dart';
-import 'package:gastdash_website_flutter/widgets/release_card.dart';
-import 'package:gastdash_website_flutter/widgets/socials_dialog.dart';
+import 'package:gastdash_website_flutter/core/core.dart';
+import 'package:gastdash_website_flutter/features/index/index.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 

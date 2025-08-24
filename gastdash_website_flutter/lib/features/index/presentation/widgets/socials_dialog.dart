@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gastdash_website_flutter/widgets/main.dart';
+import 'package:gastdash_website_flutter/features/index/index.dart';
 
 class SocialsDialog extends StatelessWidget {
   const SocialsDialog({super.key});
