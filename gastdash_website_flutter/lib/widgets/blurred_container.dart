@@ -7,11 +7,13 @@ class BlurredContainer extends StatelessWidget {
     super.key,
     required this.child,
     this.width,
+    this.height,
     this.onTap,
   });
 
   final Widget child;
   final double? width;
+  final double? height;
   final VoidCallback? onTap;
 
   @override
@@ -25,6 +27,7 @@ class BlurredContainer extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
           child: Container(
             width: width,
+            height: height,
             padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: Colors.grey.shade200.withValues(alpha: 0.1),
