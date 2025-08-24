@@ -40,12 +40,12 @@ class TranslationsPage extends StatelessWidget {
             centerTitle: true,
           ),
           SliverToBoxAdapter(child: SizedBox(height: 32)),
-          SliverToBoxAdapter(
-            child: FutureBuilder(
-              future: _getTranslations(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
+          FutureBuilder(
+            future: _getTranslations(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return SliverToBoxAdapter(
+                  child: Center(
                     child: SizedBox(
                       height: 100,
                       width: 100,
@@ -58,34 +58,81 @@ class TranslationsPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                  );
-                }
-                if (!snapshot.hasData) {
-                  return Text('No translations');
-                }
-                return Wrap(
-                  alignment: WrapAlignment.center,
-                  spacing: 32,
-                  runSpacing: 32,
-                  children: [
-                    ...List.generate(snapshot.data!.length, (index) {
-                      final String imagePath = snapshot.data![index];
-
-                      return BlurredContainer(
-                        onTap: () => showDialog(
-                          context: context,
-                          builder: (context) =>
-                              Dialog(child: Image.asset(imagePath)),
-                        ),
-                        width: 400,
-                        height: 400,
-                        child: Image.asset(imagePath, cacheWidth: 400),
-                      );
-                    }),
-                  ],
+                  ),
                 );
-              },
-            ),
+              }
+              if (!snapshot.hasData) {
+                return SliverToBoxAdapter(child: Text('No translations'));
+              }
+              return SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 64),
+                sliver: SliverGrid(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    final String imagePath = snapshot.data![index];
+
+                    return BlurredContainer(
+                      onTap: () => showDialog(
+                        context: context,
+                        builder: (context) =>
+                            Dialog(child: Image.asset(imagePath)),
+                      ),
+                      width: 400,
+                      height: 400,
+                      child: Image.asset(imagePath, cacheWidth: 400),
+                    );
+                  }, childCount: snapshot.data!.length),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 32,
+                    mainAxisSpacing: 32,
+                  ),
+                ),
+              );
+              //
+              // return GridView.builder(
+              //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //     crossAxisCount: 4,
+              //   ),
+              //   shrinkWrap: true,
+              //   itemCount: snapshot.data!.length,
+              //   itemBuilder: (context, index) {
+              //     final String imagePath = snapshot.data![index];
+
+              //     return BlurredContainer(
+              //       onTap: () => showDialog(
+              //         context: context,
+              //         builder: (context) =>
+              //             Dialog(child: Image.asset(imagePath)),
+              //       ),
+              //       width: 400,
+              //       height: 400,
+              //       child: Image.asset(imagePath, cacheWidth: 400),
+              //     );
+              //   },
+              // );
+              //
+              // return Wrap(
+              //   alignment: WrapAlignment.center,
+              //   spacing: 32,
+              //   runSpacing: 32,
+              //   children: [
+              //     ...List.generate(snapshot.data!.length, (index) {
+              //       final String imagePath = snapshot.data![index];
+
+              //       return BlurredContainer(
+              //         onTap: () => showDialog(
+              //           context: context,
+              //           builder: (context) =>
+              //               Dialog(child: Image.asset(imagePath)),
+              //         ),
+              //         width: 400,
+              //         height: 400,
+              //         child: Image.asset(imagePath, cacheWidth: 400),
+              //       );
+              //     }),
+              //   ],
+              // );
+            },
           ),
           SliverToBoxAdapter(child: SizedBox(height: 64)),
         ],
