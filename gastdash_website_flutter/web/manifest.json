@@ -1,11 +1,11 @@
 {
-    "name": "gastdash_website_flutter",
-    "short_name": "gastdash_website_flutter",
+    "name": "GASTDASH Official Website",
+    "short_name": "GASTDASH",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hexcode",
     "theme_color": "#hexcode",
-    "description": "A new Flutter project.",
+    "description": "GASTDASH Official Website with bio and music releases",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
