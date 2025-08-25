@@ -17,6 +17,7 @@ class ReleaseCard extends StatelessWidget {
           Text(
             text,
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+            textAlign: TextAlign.center,
           ),
           Divider(thickness: 1, color: Colors.white),
           Container(

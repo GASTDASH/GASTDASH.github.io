@@ -7,6 +7,10 @@ import 'package:url_launcher/url_launcher.dart';
 class IndexPage extends StatelessWidget {
   const IndexPage({super.key});
 
+  void gotoTranslations(BuildContext context) {
+    GoRouter.of(context).push('/translations');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,53 +74,75 @@ class IndexPage extends StatelessWidget {
                         ),
                       ],
                     ),
+                    overflow: TextOverflow.fade,
                   ),
                 ),
                 actionsPadding: EdgeInsets.only(right: 32),
-                actions: [
-                  TextButton.icon(
-                    onPressed: () {
-                      showSocialsDialog(context);
-                    },
-                    label: Text('Socials'),
-                    icon: Icon(Icons.person_search),
-                  ),
+                actions: MediaQuery.of(context).size.width > 480
+                    ? [
+                        TextButton.icon(
+                          onPressed: () => showSocialsDialog(context),
+                          label: Text('Socials'),
+                          icon: Icon(Icons.person_search),
+                        ),
 
-                  TextButton.icon(
-                    onPressed: () {},
-                    label: Text('Music'),
-                    icon: Icon(Icons.music_note),
-                  ),
-                  TextButton.icon(
-                    onPressed: () {
-                      GoRouter.of(context).go('/translations');
-                    },
-                    label: Text('Translations'),
-                    icon: Icon(Icons.translate),
-                  ),
-                  TextButton.icon(
-                    onPressed: () async {
-                      final Uri uri = Uri.parse('https://vk.com/gastdasharts');
-                      if (!await launchUrl(uri)) {
-                        throw Exception('Could not launch $uri');
-                      }
-                    },
-                    label: Text('Arts'),
-                    icon: Icon(Icons.image),
-                  ),
-                ],
+                        TextButton.icon(
+                          onPressed: () => showMusicLinksDialog(context),
+                          label: Text('Music'),
+                          icon: Icon(Icons.music_note),
+                        ),
+                        TextButton.icon(
+                          onPressed: () => gotoTranslations(context),
+                          label: Text('Translations'),
+                          icon: Icon(Icons.translate),
+                        ),
+                        TextButton.icon(
+                          onPressed: () async => await openArts(),
+                          label: Text('Arts'),
+                          icon: Icon(Icons.image),
+                        ),
+                      ]
+                    : [
+                        PopupMenuButton(
+                          icon: Icon(Icons.menu),
+                          itemBuilder: (context) => [
+                            PopupMenuItem(
+                              child: Text('Socials'),
+                              onTap: () => showSocialsDialog(context),
+                            ),
+                            PopupMenuItem(
+                              child: Text('Music'),
+                              onTap: () => showMusicLinksDialog(context),
+                            ),
+                            PopupMenuItem(
+                              child: Text('Translations'),
+                              onTap: () => gotoTranslations(context),
+                            ),
+                            PopupMenuItem(
+                              child: Text('Arts'),
+                              onTap: () async => await openArts(),
+                            ),
+                          ],
+                        ),
+                      ],
               ),
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 64,
+                    horizontal: 32,
                     vertical: 64,
                   ),
-                  child: SizedBox(
-                    height: 400,
-                    child: Row(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 800),
+                    child: Flex(
+                      // mainAxisSize: MainAxisSize.min,
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      direction: MediaQuery.of(context).size.width > 900
+                          ? Axis.horizontal
+                          : Axis.vertical,
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
+                      spacing: 12,
                       children: [
                         Flexible(
                           child: ConstrainedBox(
@@ -124,7 +150,10 @@ class IndexPage extends StatelessWidget {
                             child: Column(
                               spacing: 12,
                               mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment:
+                                  MediaQuery.of(context).size.width > 900
+                                  ? CrossAxisAlignment.start
+                                  : CrossAxisAlignment.center,
                               children: [
                                 Text(
                                   'New album: Diamond Tiara\'s Records',
@@ -141,9 +170,9 @@ class IndexPage extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 32),
-                                Row(
+                                Wrap(
                                   spacing: 16,
-                                  mainAxisSize: MainAxisSize.min,
+                                  runSpacing: 16,
                                   children: [
                                     BlurredContainer(
                                       onTap: () async {
@@ -156,9 +185,16 @@ class IndexPage extends StatelessWidget {
                                           );
                                         }
                                       },
-                                      child: Text(
-                                        'Listen now',
-                                        style: TextStyle(fontSize: 21),
+                                      child: Row(
+                                        spacing: 8,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            'Listen now',
+                                            style: TextStyle(fontSize: 21),
+                                          ),
+                                          Icon(Icons.music_note),
+                                        ],
                                       ),
                                     ),
                                     BlurredContainer(
@@ -172,9 +208,16 @@ class IndexPage extends StatelessWidget {
                                           );
                                         }
                                       },
-                                      child: Text(
-                                        'Watch on YouTube',
-                                        style: TextStyle(fontSize: 21),
+                                      child: Row(
+                                        spacing: 8,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            'Watch on YouTube',
+                                            style: TextStyle(fontSize: 21),
+                                          ),
+                                          Icon(Icons.play_circle),
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -198,6 +241,7 @@ class IndexPage extends StatelessWidget {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
                                 ),
+                                overflow: TextOverflow.fade,
                               ),
                               SizedBox(height: 6),
                               Row(
@@ -222,6 +266,7 @@ class IndexPage extends StatelessWidget {
                   child: Text(
                     'My previous releases',
                     style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -271,10 +316,10 @@ class IndexPage extends StatelessWidget {
               SliverToBoxAdapter(child: SizedBox(height: 128)),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 128),
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: Center(
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 1000),
+                      constraints: BoxConstraints(maxWidth: 800),
                       child: Column(
                         children: [
                           Text(
@@ -283,6 +328,7 @@ class IndexPage extends StatelessWidget {
                               fontSize: 36,
                               fontWeight: FontWeight.w700,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           SizedBox(height: 16),
                           RichText(
@@ -299,18 +345,18 @@ class IndexPage extends StatelessWidget {
                                       'I am a beginning musician who has been trying to reach high in music for more than ',
                                 ),
                                 TextSpan(
-                                  text: '6 years ',
+                                  text: '6 years',
                                   style: TextStyle(fontWeight: FontWeight.w700),
                                 ),
                                 TextSpan(
                                   text:
-                                      'and always try to learn something new. I write music in a variety of styles, from ',
+                                      ' and always try to learn something new. I write music in a variety of styles, from ',
                                 ),
                                 TextSpan(
-                                  text: 'heavy bass music ',
+                                  text: 'heavy bass music',
                                   style: TextStyle(fontWeight: FontWeight.w700),
                                 ),
-                                TextSpan(text: 'to '),
+                                TextSpan(text: ' to '),
                                 TextSpan(
                                   text: 'epic orchestra',
                                   style: TextStyle(fontWeight: FontWeight.w700),
@@ -328,10 +374,10 @@ class IndexPage extends StatelessWidget {
               SliverToBoxAdapter(child: SizedBox(height: 128)),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 128),
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: Center(
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 1000),
+                      constraints: BoxConstraints(maxWidth: 800),
                       child: Column(
                         children: [
                           Text(
@@ -340,6 +386,7 @@ class IndexPage extends StatelessWidget {
                               fontSize: 36,
                               fontWeight: FontWeight.w700,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           SizedBox(height: 16),
                           RichText(
@@ -353,22 +400,22 @@ class IndexPage extends StatelessWidget {
                               children: [
                                 TextSpan(text: 'I can help you write a '),
                                 TextSpan(
-                                  text: 'soundtrack for a game ',
+                                  text: 'soundtrack for a game',
                                   style: TextStyle(
                                     decoration: TextDecoration.underline,
                                   ),
                                 ),
                                 TextSpan(
                                   text:
-                                      'or perhaps another creative work, such as an ',
+                                      ' or perhaps another creative work, such as an ',
                                 ),
                                 TextSpan(
-                                  text: 'audiobook ',
+                                  text: 'audiobook',
                                   style: TextStyle(
                                     decoration: TextDecoration.underline,
                                   ),
                                 ),
-                                TextSpan(text: 'or a '),
+                                TextSpan(text: ' or a '),
                                 TextSpan(
                                   text: 'movie',
                                   style: TextStyle(
@@ -380,17 +427,18 @@ class IndexPage extends StatelessWidget {
                                       '. I want to try myself everywhere and I will be glad if you accept me into your team.\nI\'m willing to work for the ',
                                 ),
                                 TextSpan(
-                                  text: 'minimum wage ',
+                                  text: 'minimum wage',
                                   style: TextStyle(fontWeight: FontWeight.w700),
                                 ),
                                 TextSpan(
                                   text:
-                                      'if the job doesn\'t consume much of my resources.\nIf you have a job for me, you can always ',
+                                      ' if the job doesn\'t consume much of my resources.\nIf you have a job for me, you can always ',
                                 ),
                                 TextSpan(
-                                  text: 'contact me.',
+                                  text: 'contact me',
                                   style: TextStyle(fontWeight: FontWeight.w700),
                                 ),
+                                TextSpan(text: '.'),
                               ],
                             ),
                           ),
@@ -403,10 +451,10 @@ class IndexPage extends StatelessWidget {
               SliverToBoxAdapter(child: SizedBox(height: 128)),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 128),
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: Center(
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 1000),
+                      constraints: BoxConstraints(maxWidth: 800),
                       child: Column(
                         children: [
                           Text(
@@ -415,6 +463,7 @@ class IndexPage extends StatelessWidget {
                               fontSize: 36,
                               fontWeight: FontWeight.w700,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           SizedBox(height: 16),
                           Wrap(
@@ -422,25 +471,22 @@ class IndexPage extends StatelessWidget {
                             spacing: 16,
                             runSpacing: 16,
                             children: [
-                              BlurredContainer(
-                                onTap: () {},
-                                child: SizedBox(height: 150, width: 150),
+                              ProjectCard(
+                                text:
+                                    'The soundtrack to the Fallout: Equestria audiobook',
+                                url: 'https://vk.com/wall-197272590_63',
+                                imagePath: 'assets/images/foe.jpg',
                               ),
-                              BlurredContainer(
-                                onTap: () {},
-                                child: SizedBox(height: 150, width: 150),
+                              ProjectCard(
+                                text:
+                                    'Help with recording songs in cartoon translations',
+                                url: 'https://vk.com/wall-214697695_4543',
+                                imagePath: 'assets/images/jem.jpg',
                               ),
-                              BlurredContainer(
-                                onTap: () {},
-                                child: SizedBox(height: 150, width: 150),
-                              ),
-                              BlurredContainer(
-                                onTap: () {},
-                                child: SizedBox(height: 150, width: 150),
-                              ),
-                              BlurredContainer(
-                                onTap: () {},
-                                child: SizedBox(height: 150, width: 150),
+                              ProjectCard(
+                                text: 'The soundtrack for a small indie game',
+                                url: 'https://manetalk.com/ru/about_us',
+                                imagePath: 'assets/images/ponyland.jpg',
                               ),
                             ],
                           ),
@@ -458,6 +504,16 @@ class IndexPage extends StatelessWidget {
     );
   }
 
+  Future<void> openArts() async {
+    final Uri uri = Uri.parse('https://vk.com/gastdasharts');
+    if (!await launchUrl(uri)) {
+      throw Exception('Could not launch $uri');
+    }
+  }
+
   Future showSocialsDialog(BuildContext context) =>
       showDialog(context: context, builder: (context) => SocialsDialog());
+
+  Future showMusicLinksDialog(BuildContext context) =>
+      showDialog(context: context, builder: (context) => MusicDialog());
 }
