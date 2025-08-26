@@ -27,14 +27,26 @@ class IndexPage extends StatelessWidget {
                   return Stack(
                     children: [
                       Positioned(
+                        top: provider.topOffset / 20,
+                        width: MediaQuery.of(context).size.width,
+                        height: 1400,
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: Image.asset(
+                            'assets/images/GASTDASH_BG.png',
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                      Positioned(
                         top: provider.topOffset / 4,
                         width: MediaQuery.of(context).size.width,
-                        child: BackgroundStack1(),
+                        child: BackgroundStack1(color: Colors.white),
                       ),
                       Positioned(
                         top: provider.topOffset / 2,
                         width: MediaQuery.of(context).size.width,
-                        child: BackgroundStack2(),
+                        child: BackgroundStack2(color: Colors.cyan.shade100),
                       ),
                     ],
                   );

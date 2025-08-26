@@ -9,7 +9,7 @@ class BackgroundLight extends StatelessWidget {
     this.right = 0,
     required this.color,
     required this.alignment,
-    this.blurRadius = 120,
+    this.blurRadius = 150,
   });
 
   final AlignmentGeometry alignment;

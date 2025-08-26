@@ -28,7 +28,6 @@ class BlurredContainer extends StatelessWidget {
           child: Container(
             width: width,
             height: height,
-            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: Colors.grey.shade200.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(24),
@@ -37,7 +36,21 @@ class BlurredContainer extends StatelessWidget {
                 width: 2,
               ),
             ),
-            child: child,
+            child: Stack(
+              alignment: AlignmentGeometry.center,
+              children: [
+                Positioned.fill(
+                  child: Opacity(
+                    opacity: 0.05,
+                    child: Image(
+                      image: AssetImage('assets/images/noise.png'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                Padding(padding: EdgeInsets.all(20), child: child),
+              ],
+            ),
           ),
         ),
       ),
