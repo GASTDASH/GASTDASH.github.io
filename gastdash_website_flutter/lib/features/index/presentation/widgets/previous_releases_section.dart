@@ -23,23 +23,23 @@ class PreviousReleasesSection extends StatelessWidget {
           children: [
             ReleaseCard(
               text: 'A new orchestral soundtrack',
-              videoUrl: 'https://www.youtube.com/embed/FCMxShOVb5Q',
+              videoUrl: 'https://www.youtube.com/watch?v=FCMxShOVb5Q',
             ),
             ReleaseCard(
               text: 'Check out my Dubstep remix on Pony Girl!',
-              videoUrl: 'https://www.youtube.com/embed/4WcRz62qxEY',
+              videoUrl: 'https://www.youtube.com/watch?v=4WcRz62qxEY',
             ),
             ReleaseCard(
               text: 'My new great midtempo tune',
-              videoUrl: 'https://www.youtube.com/embed/5psoNBV_8W4',
+              videoUrl: 'https://www.youtube.com/watch?v=5psoNBV_8W4',
             ),
             ReleaseCard(
               text: 'Chiptune remix to Scootaloo!',
-              videoUrl: 'https://www.youtube.com/embed/JT-2BjJj6Es',
+              videoUrl: 'https://www.youtube.com/watch?v=JT-2BjJj6Es',
             ),
             ReleaseCard(
               text: 'Heavy dubstep track "Reborn"',
-              videoUrl: 'https://www.youtube.com/embed/Wm9zvUXNOeY',
+              videoUrl: 'https://www.youtube.com/watch?v=Wm9zvUXNOeY',
             ),
           ],
         ),
