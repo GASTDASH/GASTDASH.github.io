@@ -72,8 +72,8 @@ class TranslationsPage extends StatelessWidget {
                 }
                 return SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  sliver: SliverGrid(
-                    delegate: SliverChildBuilderDelegate((context, index) {
+                  sliver: SliverGrid.builder(
+                    itemBuilder: (context, index) {
                       final String imagePath = snapshot.data![index];
 
                       return BlurredContainer(
@@ -86,7 +86,8 @@ class TranslationsPage extends StatelessWidget {
                         height: 400,
                         child: Image.asset(imagePath, cacheWidth: 400),
                       );
-                    }, childCount: snapshot.data!.length),
+                    },
+                    itemCount: snapshot.data!.length,
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 250,
                       // crossAxisCount: 4,
