@@ -57,6 +57,17 @@ class BackgroundLayer2 extends BackgroundLayer {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // Padding(
+        //   padding: EdgeInsetsGeometry.only(right: 80, top: 450),
+        //   child: Align(
+        //     alignment: AlignmentGeometry.topRight,
+        //     child: SizedBox(
+        //       height: 100,
+        //       width: 100,
+        //       child: Image.asset('assets/images/cutie.png'),
+        //     ),
+        //   ),
+        // ),
         BackgroundLight(
           alignment: AlignmentGeometry.topRight,
           color: color,
