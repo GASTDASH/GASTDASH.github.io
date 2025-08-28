@@ -41,6 +41,10 @@ class PreviousReleasesSection extends StatelessWidget {
               text: 'Heavy dubstep track "Reborn"',
               videoUrl: 'https://www.youtube.com/watch?v=Wm9zvUXNOeY',
             ),
+            ReleaseCard(
+              text: 'G-House collab',
+              videoUrl: 'https://www.youtube.com/watch?v=DPJkiCcw4SE',
+            ),
           ],
         ),
       ],
