@@ -89,8 +89,7 @@ class TranslationsPage extends StatelessWidget {
                     },
                     itemCount: snapshot.data!.length,
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 250,
-                      // crossAxisCount: 4,
+                      maxCrossAxisExtent: 300,
                       crossAxisSpacing: 32,
                       mainAxisSpacing: 32,
                     ),
