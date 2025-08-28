@@ -25,7 +25,10 @@ class _YoutubePlayerWebState extends State<YoutubePlayerWeb> {
     assert(videoId != null);
 
     controller = YoutubePlayerController(
-      params: YoutubePlayerParams(showFullscreenButton: true),
+      params: YoutubePlayerParams(
+        showFullscreenButton: true,
+        strictRelatedVideos: true,
+      ),
     );
     controller.cueVideoById(videoId: videoId!);
     controller.listen((event) {
