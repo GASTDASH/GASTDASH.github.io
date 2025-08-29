@@ -44,32 +44,27 @@ class _YoutubePlayerWebState extends State<YoutubePlayerWeb> {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 16 / 9,
-      child: Stack(
-        fit: StackFit.loose,
-        alignment: AlignmentGeometry.topCenter,
-        children: [
-          SizedBox(
-            width: 560,
-            height: 315,
-            child: YoutubePlayer(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: 560, maxHeight: 315),
+        child: Stack(
+          fit: StackFit.expand,
+          alignment: AlignmentGeometry.topCenter,
+          children: [
+            YoutubePlayer(
               controller: controller,
               gestureRecognizers: {},
               keepAlive: true,
             ),
-          ),
-          PointerInterceptorWeb().buildWidget(
-            intercepting: intercepting,
-            child: SizedBox(
-              width: 560,
-              height: 315,
+            PointerInterceptorWeb().buildWidget(
+              intercepting: intercepting,
               child: GestureDetector(
                 onTap: () {
                   controller.playVideo();
                 },
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

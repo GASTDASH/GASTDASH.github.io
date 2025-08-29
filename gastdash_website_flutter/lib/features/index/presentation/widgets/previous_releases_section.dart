@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gastdash_website_flutter/core/core.dart';
 import 'package:gastdash_website_flutter/features/index/index.dart';
@@ -60,74 +61,71 @@ class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
           ),
           SizedBox(height: 32),
           Flexible(
-            child: AspectRatio(
-              aspectRatio: 4 / 2.4,
-              child: Row(
-                spacing: 24,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: (currentPage != 0)
-                        ? () => pageController.previousPage(
-                            duration: Durations.medium4,
-                            curve: Curves.easeOutCirc,
-                          )
-                        : null,
-                    icon: Icon(Icons.chevron_left_rounded),
-                  ),
-                  Flexible(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: 560),
-                      child: NotificationListener<ScrollNotification>(
-                        onNotification: (notification) => true,
-                        child: PageView(
-                          // estimatedPageSize: 600,
-                          physics: NeverScrollableScrollPhysics(),
-                          controller: pageController,
-                          onPageChanged: (value) =>
-                              setState(() => currentPage = value),
-                          children: [
-                            ReleaseCard(
-                              text: 'A new orchestral soundtrack',
-                              videoUrl:
-                                  'https://www.youtube.com/watch?v=FCMxShOVb5Q',
-                            ),
-                            ReleaseCard(
-                              text: 'Check out my Dubstep remix on Pony Girl!',
-                              videoUrl:
-                                  'https://www.youtube.com/watch?v=4WcRz62qxEY',
-                            ),
-                            ReleaseCard(
-                              text: 'My new great midtempo tune',
-                              videoUrl:
-                                  'https://www.youtube.com/watch?v=5psoNBV_8W4',
-                            ),
-                            ReleaseCard(
-                              text: 'Chiptune remix to Scootaloo!',
-                              videoUrl:
-                                  'https://www.youtube.com/watch?v=JT-2BjJj6Es',
-                            ),
-                            ReleaseCard(
-                              text: 'Heavy dubstep track "Reborn"',
-                              videoUrl:
-                                  'https://www.youtube.com/watch?v=Wm9zvUXNOeY',
-                            ),
-                            ReleaseCard(
-                              text: 'G-House collab',
-                              videoUrl:
-                                  'https://www.youtube.com/watch?v=DPJkiCcw4SE',
-                            ),
-                          ],
-                        ),
+            child: Row(
+              spacing: 12,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: (currentPage != 0)
+                      ? () => pageController.previousPage(
+                          duration: Durations.medium4,
+                          curve: Curves.easeOutCirc,
+                        )
+                      : null,
+                  icon: Icon(Icons.chevron_left_rounded),
+                ),
+                Flexible(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 560),
+                    child: NotificationListener<ScrollNotification>(
+                      onNotification: (notification) => true,
+                      child: ExpandablePageView(
+                        estimatedPageSize: 400,
+                        physics: NeverScrollableScrollPhysics(),
+                        controller: pageController,
+                        onPageChanged: (value) =>
+                            setState(() => currentPage = value),
+                        children: [
+                          const ReleaseCard(
+                            text: 'A new orchestral soundtrack',
+                            videoUrl:
+                                'https://www.youtube.com/watch?v=FCMxShOVb5Q',
+                          ),
+                          const ReleaseCard(
+                            text: 'Check out my Dubstep remix on Pony Girl!',
+                            videoUrl:
+                                'https://www.youtube.com/watch?v=4WcRz62qxEY',
+                          ),
+                          const ReleaseCard(
+                            text: 'My new great midtempo tune',
+                            videoUrl:
+                                'https://www.youtube.com/watch?v=5psoNBV_8W4',
+                          ),
+                          const ReleaseCard(
+                            text: 'Chiptune remix to Scootaloo!',
+                            videoUrl:
+                                'https://www.youtube.com/watch?v=JT-2BjJj6Es',
+                          ),
+                          const ReleaseCard(
+                            text: 'Heavy dubstep track "Reborn"',
+                            videoUrl:
+                                'https://www.youtube.com/watch?v=Wm9zvUXNOeY',
+                          ),
+                          const ReleaseCard(
+                            text: 'G-House collab',
+                            videoUrl:
+                                'https://www.youtube.com/watch?v=DPJkiCcw4SE',
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  IconButton(
-                    onPressed: nextRelease,
-                    icon: Icon(Icons.chevron_right_rounded),
-                  ),
-                ],
-              ),
+                ),
+                IconButton(
+                  onPressed: nextRelease,
+                  icon: Icon(Icons.chevron_right_rounded),
+                ),
+              ],
             ),
           ),
           SizedBox(height: 16),
