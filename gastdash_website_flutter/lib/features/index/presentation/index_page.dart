@@ -86,10 +86,10 @@ class IndexPage extends StatelessWidget {
                     SliverToBoxAdapter(child: SizedBox(height: 128)),
                     SliverToBoxAdapter(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 64),
+                        padding: const EdgeInsets.symmetric(horizontal: 32),
                         child: Center(
                           child: ConstrainedBox(
-                            constraints: BoxConstraints(maxWidth: 1300),
+                            constraints: BoxConstraints(maxWidth: 800),
                             child: PreviousReleasesSection(),
                           ),
                         ),

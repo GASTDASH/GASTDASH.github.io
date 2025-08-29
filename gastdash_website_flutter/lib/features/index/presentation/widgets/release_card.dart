@@ -9,18 +9,24 @@ class ReleaseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 560,
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: 560),
       child: Column(
         spacing: 12,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            text,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-            textAlign: TextAlign.center,
+          ConstrainedBox(
+            constraints: BoxConstraints(minHeight: 80),
+            child: Center(
+              child: Text(
+                text,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
           Divider(thickness: 1, color: Colors.white),
-          YoutubePlayerWeb(videoUrl: videoUrl),
+          Flexible(child: YoutubePlayerWeb(videoUrl: videoUrl)),
         ],
       ),
     );

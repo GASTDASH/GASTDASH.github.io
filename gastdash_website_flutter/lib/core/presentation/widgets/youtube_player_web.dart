@@ -42,22 +42,35 @@ class _YoutubePlayerWebState extends State<YoutubePlayerWeb> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        YoutubePlayer(controller: controller, gestureRecognizers: {}),
-        PointerInterceptorWeb().buildWidget(
-          intercepting: intercepting,
-          child: SizedBox(
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: Stack(
+        fit: StackFit.loose,
+        alignment: AlignmentGeometry.topCenter,
+        children: [
+          SizedBox(
             width: 560,
             height: 315,
-            child: GestureDetector(
-              onTap: () {
-                controller.playVideo();
-              },
+            child: YoutubePlayer(
+              controller: controller,
+              gestureRecognizers: {},
+              keepAlive: true,
             ),
           ),
-        ),
-      ],
+          PointerInterceptorWeb().buildWidget(
+            intercepting: intercepting,
+            child: SizedBox(
+              width: 560,
+              height: 315,
+              child: GestureDetector(
+                onTap: () {
+                  controller.playVideo();
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
