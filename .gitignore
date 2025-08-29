@@ -43,5 +43,4 @@ gastdash_website_flutter/android/app/debug
 gastdash_website_flutter/android/app/profile
 gastdash_website_flutter/android/app/release
 
-gastdash_website_flutter/build/*
-!gastdash_website_flutter/build/web
+gastdash_website_flutter/build
