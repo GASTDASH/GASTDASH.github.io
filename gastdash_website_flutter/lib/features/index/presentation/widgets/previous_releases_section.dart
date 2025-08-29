@@ -36,6 +36,15 @@ class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
   }
 
   @override
+  void dispose() {
+    timer.cancel();
+    animationController.dispose();
+    pageController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: BoxConstraints(maxHeight: 800),
