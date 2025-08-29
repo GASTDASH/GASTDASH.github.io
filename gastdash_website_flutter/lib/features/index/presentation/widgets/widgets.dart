@@ -3,6 +3,7 @@
 
 
 export 'about_section.dart';
+export 'awards_section.dart';
 export 'background_layer.dart';
 export 'background_light.dart';
 export 'help_section.dart';

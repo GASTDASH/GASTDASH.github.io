@@ -132,6 +132,26 @@ class IndexPage extends StatelessWidget {
                       ),
                     ),
                     SliverToBoxAdapter(child: SizedBox(height: 128)),
+                    SliverToBoxAdapter(
+                      child: Center(
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(maxWidth: 800),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
+                            child: AwardsSection(),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SliverToBoxAdapter(child: SizedBox(height: 128)),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Text('2025 © GASTDASH ~ Alexey Shcherbakov'),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
