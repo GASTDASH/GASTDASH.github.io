@@ -3,9 +3,16 @@ import 'package:pointer_interceptor_web/pointer_interceptor_web.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class YoutubePlayerWeb extends StatefulWidget {
-  const YoutubePlayerWeb({super.key, required this.videoUrl});
+  const YoutubePlayerWeb({
+    super.key,
+    required this.videoUrl,
+    this.onPaused,
+    this.onPlaying,
+  });
 
   final String videoUrl;
+  final VoidCallback? onPaused;
+  final VoidCallback? onPlaying;
 
   @override
   State<YoutubePlayerWeb> createState() => _YoutubePlayerWebState();
@@ -34,8 +41,10 @@ class _YoutubePlayerWebState extends State<YoutubePlayerWeb> {
     controller.listen((event) {
       if (event.playerState == PlayerState.paused) {
         setState(() => intercepting = true);
+        if (widget.onPaused != null) widget.onPaused!();
       } else if (event.playerState == PlayerState.playing) {
         setState(() => intercepting = false);
+        if (widget.onPlaying != null) widget.onPlaying!();
       }
     });
   }

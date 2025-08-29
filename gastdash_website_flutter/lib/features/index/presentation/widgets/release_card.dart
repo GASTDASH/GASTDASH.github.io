@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:gastdash_website_flutter/core/core.dart';
 
 class ReleaseCard extends StatelessWidget {
-  const ReleaseCard({super.key, required this.text, required this.videoUrl});
+  const ReleaseCard({
+    super.key,
+    required this.text,
+    required this.videoUrl,
+    this.onPaused,
+    this.onPlaying,
+  });
 
   final String text;
   final String videoUrl;
+  final VoidCallback? onPaused;
+  final VoidCallback? onPlaying;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +36,11 @@ class ReleaseCard extends StatelessWidget {
             ),
           ),
           Divider(thickness: 1, color: Colors.white),
-          YoutubePlayerWeb(videoUrl: videoUrl),
+          YoutubePlayerWeb(
+            videoUrl: videoUrl,
+            onPaused: onPaused,
+            onPlaying: onPlaying,
+          ),
         ],
       ),
     );

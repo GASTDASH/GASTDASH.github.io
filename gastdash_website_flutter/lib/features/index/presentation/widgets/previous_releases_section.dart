@@ -16,30 +16,69 @@ class PreviousReleasesSection extends StatefulWidget {
 
 class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
     with TickerProviderStateMixin {
-  late final Timer timer;
-  late final AnimationController animationController;
+  static const Duration changePageInterval = Duration(seconds: 7);
+  // TODO: Перенести в слой Data
+  final List<Release> releases = [
+    Release(
+      name: 'A new orchestral soundtrack',
+      videoUrl: 'https://www.youtube.com/watch?v=FCMxShOVb5Q',
+    ),
+    Release(
+      name: 'Check out my Dubstep remix on Pony Girl!',
+      videoUrl: 'https://www.youtube.com/watch?v=4WcRz62qxEY',
+    ),
+    Release(
+      name: 'My new great midtempo tune',
+      videoUrl: 'https://www.youtube.com/watch?v=5psoNBV_8W4',
+    ),
+    Release(
+      name: 'Chiptune remix to Scootaloo!',
+      videoUrl: 'https://www.youtube.com/watch?v=JT-2BjJj6Es',
+    ),
+    Release(
+      name: 'Heavy dubstep track "Reborn"',
+      videoUrl: 'https://www.youtube.com/watch?v=Wm9zvUXNOeY',
+    ),
+    Release(
+      name: 'G-House collab',
+      videoUrl: 'https://www.youtube.com/watch?v=DPJkiCcw4SE',
+    ),
+  ];
+
+  late Timer timer;
   final pageController = PageController();
 
   int currentPage = 0;
-  final Duration changePageInterval = Duration(seconds: 7);
+
+  void initTimer() =>
+      timer = Timer.periodic(changePageInterval, (_) => nextRelease());
+
+  void nextRelease() => currentPage != 5
+      ? pageController.nextPage(
+          duration: Durations.medium4,
+          curve: Curves.easeOutCirc,
+        )
+      : pageController.animateToPage(
+          0,
+          duration: Durations.medium4,
+          curve: Curves.easeOutCirc,
+        );
+
+  void previousRelease() => pageController.previousPage(
+    duration: Durations.medium4,
+    curve: Curves.easeOutCirc,
+  );
 
   @override
   void initState() {
     super.initState();
 
-    animationController = AnimationController(
-      vsync: this,
-      duration: changePageInterval,
-    )..repeat();
-    timer = Timer.periodic(changePageInterval, (_) {
-      nextRelease();
-    });
+    initTimer();
   }
 
   @override
   void dispose() {
     timer.cancel();
-    animationController.dispose();
     pageController.dispose();
 
     super.dispose();
@@ -67,10 +106,11 @@ class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
               children: [
                 IconButton(
                   onPressed: (currentPage != 0)
-                      ? () => pageController.previousPage(
-                          duration: Durations.medium4,
-                          curve: Curves.easeOutCirc,
-                        )
+                      ? () {
+                          previousRelease();
+                          timer.cancel();
+                          initTimer();
+                        }
                       : null,
                   icon: Icon(Icons.chevron_left_rounded),
                 ),
@@ -79,50 +119,29 @@ class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
                     constraints: BoxConstraints(maxWidth: 560),
                     child: NotificationListener<ScrollNotification>(
                       onNotification: (notification) => true,
-                      child: ExpandablePageView(
+                      child: ExpandablePageView.builder(
                         estimatedPageSize: 400,
                         physics: NeverScrollableScrollPhysics(),
                         controller: pageController,
                         onPageChanged: (value) =>
                             setState(() => currentPage = value),
-                        children: [
-                          const ReleaseCard(
-                            text: 'A new orchestral soundtrack',
-                            videoUrl:
-                                'https://www.youtube.com/watch?v=FCMxShOVb5Q',
-                          ),
-                          const ReleaseCard(
-                            text: 'Check out my Dubstep remix on Pony Girl!',
-                            videoUrl:
-                                'https://www.youtube.com/watch?v=4WcRz62qxEY',
-                          ),
-                          const ReleaseCard(
-                            text: 'My new great midtempo tune',
-                            videoUrl:
-                                'https://www.youtube.com/watch?v=5psoNBV_8W4',
-                          ),
-                          const ReleaseCard(
-                            text: 'Chiptune remix to Scootaloo!',
-                            videoUrl:
-                                'https://www.youtube.com/watch?v=JT-2BjJj6Es',
-                          ),
-                          const ReleaseCard(
-                            text: 'Heavy dubstep track "Reborn"',
-                            videoUrl:
-                                'https://www.youtube.com/watch?v=Wm9zvUXNOeY',
-                          ),
-                          const ReleaseCard(
-                            text: 'G-House collab',
-                            videoUrl:
-                                'https://www.youtube.com/watch?v=DPJkiCcw4SE',
-                          ),
-                        ],
+                        itemCount: releases.length,
+                        itemBuilder: (context, i) => ReleaseCard(
+                          text: releases[i].name,
+                          videoUrl: releases[i].videoUrl,
+                          onPaused: () => initTimer(),
+                          onPlaying: () => timer.cancel(),
+                        ),
                       ),
                     ),
                   ),
                 ),
                 IconButton(
-                  onPressed: nextRelease,
+                  onPressed: () {
+                    nextRelease();
+                    timer.cancel();
+                    initTimer();
+                  },
                   icon: Icon(Icons.chevron_right_rounded),
                 ),
               ],
@@ -136,11 +155,15 @@ class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
               activeDotColor: Colors.white,
               dotColor: Colors.grey.shade600,
             ),
-            onDotClicked: (index) => pageController.animateToPage(
-              index,
-              duration: Durations.medium4,
-              curve: Curves.easeOutCirc,
-            ),
+            onDotClicked: (index) {
+              pageController.animateToPage(
+                index,
+                duration: Durations.medium4,
+                curve: Curves.easeOutCirc,
+              );
+              timer.cancel();
+              initTimer();
+            },
           ),
           // SizedBox(height: 16),
           // SizedBox(
@@ -158,15 +181,4 @@ class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
       ),
     );
   }
-
-  void nextRelease() => currentPage != 5
-      ? pageController.nextPage(
-          duration: Durations.medium4,
-          curve: Curves.easeOutCirc,
-        )
-      : pageController.animateToPage(
-          0,
-          duration: Durations.medium4,
-          curve: Curves.easeOutCirc,
-        );
 }
