@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gastdash_website_flutter/core/core.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
@@ -9,7 +10,7 @@ class AboutSection extends StatelessWidget {
       children: [
         Text(
           'About me',
-          style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
+          style: TextStyles.sectionTitle,
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 16),

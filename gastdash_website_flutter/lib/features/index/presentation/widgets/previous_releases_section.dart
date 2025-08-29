@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:gastdash_website_flutter/core/core.dart';
 import 'package:gastdash_website_flutter/features/index/index.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -44,7 +45,7 @@ class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
           Center(
             child: Text(
               'My previous releases',
-              style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
+              style: TextStyles.sectionTitle,
               textAlign: TextAlign.center,
             ),
           ),

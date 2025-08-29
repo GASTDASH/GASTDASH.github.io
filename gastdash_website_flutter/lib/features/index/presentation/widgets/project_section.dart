@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gastdash_website_flutter/core/core.dart';
 import 'package:gastdash_website_flutter/features/index/index.dart';
 
 class ProjectSection extends StatelessWidget {
@@ -10,7 +11,7 @@ class ProjectSection extends StatelessWidget {
       children: [
         Text(
           'Participation in projects',
-          style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700),
+          style: TextStyles.sectionTitle,
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 16),
