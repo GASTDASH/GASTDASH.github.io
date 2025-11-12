@@ -4,9 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class IndexPage extends StatelessWidget {
+class IndexPage extends StatefulWidget {
   const IndexPage({super.key});
 
+  @override
+  State<IndexPage> createState() => _IndexPageState();
+}
+
+class _IndexPageState extends State<IndexPage> {
   Future showSocialsDialog(BuildContext context) =>
       showDialog(context: context, builder: (context) => SocialsDialog());
 
@@ -22,6 +27,13 @@ class IndexPage extends StatelessWidget {
     if (!await launchUrl(uri)) {
       throw Exception('Could not launch $uri');
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    Provider.of<ReleaseProvider>(context, listen: false).getReleases();
   }
 
   @override
@@ -90,7 +102,13 @@ class IndexPage extends StatelessWidget {
                         child: Center(
                           child: ConstrainedBox(
                             constraints: BoxConstraints(maxWidth: 800),
-                            child: PreviousReleasesSection(),
+                            child: Consumer<ReleaseProvider>(
+                              builder: (context, provider, child) {
+                                return PreviousReleasesSection(
+                                  releases: provider.releases,
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ),

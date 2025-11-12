@@ -7,7 +7,9 @@ import 'package:gastdash_website_flutter/features/index/index.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class PreviousReleasesSection extends StatefulWidget {
-  const PreviousReleasesSection({super.key});
+  const PreviousReleasesSection({super.key, required this.releases});
+
+  final List<Release> releases;
 
   @override
   State<PreviousReleasesSection> createState() =>
@@ -17,33 +19,6 @@ class PreviousReleasesSection extends StatefulWidget {
 class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
     with TickerProviderStateMixin {
   static const Duration changePageInterval = Duration(seconds: 7);
-  // TODO: Перенести в слой Data
-  final List<Release> releases = [
-    Release(
-      name: 'A new orchestral soundtrack',
-      videoUrl: 'https://www.youtube.com/watch?v=FCMxShOVb5Q',
-    ),
-    Release(
-      name: 'Check out my Dubstep remix on Pony Girl!',
-      videoUrl: 'https://www.youtube.com/watch?v=4WcRz62qxEY',
-    ),
-    Release(
-      name: 'My new great midtempo tune',
-      videoUrl: 'https://www.youtube.com/watch?v=5psoNBV_8W4',
-    ),
-    Release(
-      name: 'Chiptune remix to Scootaloo!',
-      videoUrl: 'https://www.youtube.com/watch?v=JT-2BjJj6Es',
-    ),
-    Release(
-      name: 'Heavy dubstep track "Reborn"',
-      videoUrl: 'https://www.youtube.com/watch?v=Wm9zvUXNOeY',
-    ),
-    Release(
-      name: 'G-House collab',
-      videoUrl: 'https://www.youtube.com/watch?v=DPJkiCcw4SE',
-    ),
-  ];
 
   late Timer timer;
   final pageController = PageController();
@@ -53,7 +28,7 @@ class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
   void initTimer() =>
       timer = Timer.periodic(changePageInterval, (_) => nextRelease());
 
-  void nextRelease() => currentPage != 5
+  void nextRelease() => currentPage != widget.releases.length - 1
       ? pageController.nextPage(
           duration: Durations.medium4,
           curve: Curves.easeOutCirc,
@@ -99,58 +74,60 @@ class _PreviousReleasesSectionState extends State<PreviousReleasesSection>
             ),
           ),
           SizedBox(height: 32),
-          Flexible(
-            child: Row(
-              spacing: 12,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: (currentPage != 0)
-                      ? () {
-                          previousRelease();
-                          timer.cancel();
-                          initTimer();
-                        }
-                      : null,
-                  icon: Icon(Icons.chevron_left_rounded),
-                ),
-                Flexible(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 560),
-                    child: NotificationListener<ScrollNotification>(
-                      onNotification: (notification) => true,
-                      child: ExpandablePageView.builder(
-                        estimatedPageSize: 400,
-                        physics: NeverScrollableScrollPhysics(),
-                        controller: pageController,
-                        onPageChanged: (value) =>
-                            setState(() => currentPage = value),
-                        itemCount: releases.length,
-                        itemBuilder: (context, i) => ReleaseCard(
-                          text: releases[i].name,
-                          videoUrl: releases[i].videoUrl,
-                          onPaused: () => initTimer(),
-                          onPlaying: () => timer.cancel(),
+          widget.releases.isNotEmpty
+              ? Flexible(
+                  child: Row(
+                    spacing: 12,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: (currentPage != 0)
+                            ? () {
+                                previousRelease();
+                                timer.cancel();
+                                initTimer();
+                              }
+                            : null,
+                        icon: Icon(Icons.chevron_left_rounded),
+                      ),
+                      Flexible(
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(maxWidth: 560),
+                          child: NotificationListener<ScrollNotification>(
+                            onNotification: (notification) => true,
+                            child: ExpandablePageView.builder(
+                              estimatedPageSize: 400,
+                              physics: NeverScrollableScrollPhysics(),
+                              controller: pageController,
+                              onPageChanged: (value) =>
+                                  setState(() => currentPage = value),
+                              itemCount: widget.releases.length,
+                              itemBuilder: (context, i) => ReleaseCard(
+                                text: widget.releases[i].name,
+                                videoUrl: widget.releases[i].videoUrl,
+                                onPaused: () => initTimer(),
+                                onPlaying: () => timer.cancel(),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      IconButton(
+                        onPressed: () {
+                          nextRelease();
+                          timer.cancel();
+                          initTimer();
+                        },
+                        icon: Icon(Icons.chevron_right_rounded),
+                      ),
+                    ],
                   ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    nextRelease();
-                    timer.cancel();
-                    initTimer();
-                  },
-                  icon: Icon(Icons.chevron_right_rounded),
-                ),
-              ],
-            ),
-          ),
+                )
+              : CircularProgressIndicator(),
           SizedBox(height: 16),
           SmoothPageIndicator(
             controller: pageController,
-            count: 6,
+            count: widget.releases.length,
             effect: ExpandingDotsEffect(
               activeDotColor: Colors.white,
               dotColor: Colors.grey.shade600,
